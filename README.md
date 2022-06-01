@@ -1,3 +1,7 @@
+# Note sulle installazioni
+per questo progetto ho installato bootstrap, icon bootstrap e angular material
+
+
 # ProgettoFinale
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
