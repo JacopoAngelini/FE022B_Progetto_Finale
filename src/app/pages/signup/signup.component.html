@@ -1,0 +1,45 @@
+<app-auth-shared></app-auth-shared>
+
+<mat-card class="mb-5">
+  <mat-card-title>Sign Up</mat-card-title>
+  <mat-card-content>
+    <form #form="ngForm" class="text-center" (ngSubmit)="registration(form)">
+
+      <mat-form-field class="nofill" appearance="standard" class="me-2">
+        <mat-label>Username</mat-label>
+        <input type="text" ngModel required name="username" matInput placeholder="inserisci la tua email">
+      </mat-form-field>
+
+      <mat-form-field class="nofill" appearance="standard">
+        <mat-label>Password</mat-label>
+        <input type='password' ngModel required name="password" matInput placeholder="inserisci la tua password">
+        <mat-hint>Inserisci almeno sei caratteri</mat-hint>
+      </mat-form-field>
+
+
+      <p>
+        <mat-form-field class="fill" appearance="standard">
+          <mat-label>Email</mat-label>
+          <input type="email" ngModel required name="email" matInput placeholder="inserisci la tua email">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="fill" appearance="fill">
+          <mat-label>Ruolo</mat-label>
+          <mat-select ngModel required matInput name="role">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <div class='d-flex justify-contente-center'>
+        <button class="m-auto" mat-raised-button color="primary" type="submit"
+          [disabled]="form.invalid">Iscriviti</button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <p class='registration'>Hai già un account? <a [routerLink]="['/']" routerLinkActive="active">Accedi!</a></p>
+  </mat-card-footer>
+</mat-card>

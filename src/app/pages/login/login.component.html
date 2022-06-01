@@ -1,0 +1,30 @@
+<app-auth-shared></app-auth-shared>
+
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+   <form #form="ngForm" (ngSubmit)="login(form)">
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Username</mat-label>
+          <input type="text" ngModel required name='username' matInput placeholder="inserisci il tuo username">
+        </mat-form-field>
+      </p>
+     
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Password</mat-label>
+          <input type='password' ngModel required name='password' matInput placeholder="inserisci la tua password">
+        </mat-form-field>
+      </p>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Accedi</button>
+   </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <p class='registration '>Non hai un account? <a  [routerLink]="['/signup']"
+      routerLinkActive="active" class="text-primary">Registrati!</a></p>    
+  </mat-card-footer>
+</mat-card>
+
+
+  

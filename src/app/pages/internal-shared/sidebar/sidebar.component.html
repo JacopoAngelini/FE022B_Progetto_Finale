@@ -1,0 +1,66 @@
+<mat-drawer-container class="s-container background-home" autosize>
+  <div id='background'></div>
+  <mat-toolbar color='primary'>
+    <div class="sidenav-content">
+      <button type="button" mat-raised-button (click)="drawer.toggle()"><i class="bi bi-list fs-4"></i>
+      </button>
+    </div>
+    <a mat-raised-button class="mx-3"  [routerLink]="['/home']" routerLinkActive="active"><i class="bi bi-house"></i>
+      Home</a>
+    <h2 *ngIf='userList' class="text-white border border-2 border-white rounded px-1">Lista Utenti</h2>
+    <h2 *ngIf='customersList' class="text-white border border-2 border-white rounded px-1">Lista Clienti</h2>
+    <h2 *ngIf='NewCustomersList' class="text-white border border-2 border-white rounded px-1">Nuovo Cliente</h2>
+    <h2 *ngIf='invoicesList' class="text-white border border-2 border-white rounded px-1">Lista Fatture</h2>
+    <h2 *ngIf='Newinvoices' class="text-white border border-2 border-white rounded px-1">Nuova Fattura</h2>
+    <h2 *ngIf='InvoicesCustomerList' class="text-white border border-2 border-white rounded px-1">Fatture Del Cliente</h2>
+
+    <span class="spacer"></span>
+    <a mat-raised-button class="mx-3" [routerLink]="['/']" (click)="logout()" routerLinkActive="active"><i
+        class="bi bi-box-arrow-left"></i> Logout</a>
+  </mat-toolbar>
+
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-expansion-panel class="content">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-primary">
+          <i class="bi bi-people"></i> Utenti
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-raised-button class=""   [routerLink]="['/users']"
+      routerLinkActive="active">Tutti gli utenti</a>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="content">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-primary">
+          <i class="bi bi-activity"></i> Clienti
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-raised-button class="me-3" [routerLink]="['/customers']" routerLinkActive="active">Tutti i clienti</a>
+      <a mat-raised-button  [routerLink]="['/customers',0]"
+      routerLinkActive="active">Nuovo cliente</a>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="content">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-primary">
+          <i class="bi bi-receipt-cutoff"></i> Fatture
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-raised-button class="me-3"   [routerLink]="['/invoices']"
+      routerLinkActive="active">Tutte le fatture</a>
+    </mat-expansion-panel>
+  </mat-drawer>
+
+
+  <ng-content #home></ng-content>
+  <ng-content #users></ng-content>
+  <ng-content #customers></ng-content>
+  <ng-content #newcustomers></ng-content>
+  <ng-content #invoices></ng-content>
+  <ng-content #newinvoice></ng-content>
+  <ng-content #ivoicesbycustomer></ng-content>
+  
+
+
+</mat-drawer-container>

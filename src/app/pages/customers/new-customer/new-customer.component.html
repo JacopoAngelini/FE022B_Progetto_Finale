@@ -1,0 +1,131 @@
+<app-sidebar [NewCustomersList]='NewCustomersList' id='customers'>
+
+  <div class="container my-2">
+
+    <mat-stepper orientation="vertical" [linear]="!isLinear" #stepper>
+
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Dati dell'azienda</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Ragione Sociale</mat-label>
+            <input matInput formControlName="RagioneSociale" required>
+          </mat-form-field>
+            <mat-form-field appearance="fill" class='mx-2'>
+              <mat-label>Tipo Cliente</mat-label>
+              <mat-select matInput formControlName="tipoCliente" required>
+                <mat-option *ngFor="let tipo of tipi" [value]="tipo">{{tipo}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Partita IVA</mat-label>
+            <input matInput formControlName="partitaIva" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Pec</mat-label>
+            <input matInput formControlName="pec" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Avanti</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Dati del contatto</ng-template>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Nome contatto</mat-label>
+            <input matInput formControlName="nomeContatto" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Cognome Contatto</mat-label>
+            <input matInput formControlName="cognomeContatto" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Email contatto</mat-label>
+            <input matInput formControlName="emailContatto" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Telefono contatto</mat-label>
+            <input matInput formControlName="telefonoContatto" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Indietro</button>
+            <button mat-button matStepperNext>Avanti</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Dati Sede Operativa</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Via</mat-label>
+            <input matInput formControlName="via" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Civico</mat-label>
+            <input matInput formControlName="civico" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Cap</mat-label>
+            <input matInput formControlName="cap" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>località</mat-label>
+            <input matInput formControlName="localita" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Provincia</mat-label>
+            <mat-select [(value)]="selectedProvince" matInput formControlName="provincia" required >
+              <mat-option *ngFor="let provincia of province" [value]="provincia">{{provincia}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class='mx-2'>
+            <mat-label>Comune</mat-label>
+            <mat-select [(value)]="selectedComuni" (click)='getComuni()' [disabled]="selectedProvince == null" matInput formControlName="comune" required>
+              <mat-option (click)='getIdComune(comuneNome)' *ngFor="let comuneNome of comuniNomi" [value]="comuneNome">{{comuneNome}}</mat-option>
+            </mat-select>
+            <mat-hint>Selezionare prima la provincia</mat-hint>
+          </mat-form-field>
+
+          <div>
+            <button mat-button matStepperPrevious>Indietro</button>
+            <button mat-button matStepperNext>Avanti</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Fine</ng-template>
+        <p>Ricontrolla i dati inseriti e premi il pulsante, hai concluso la procedura di registrazione <i class="bi bi-emoji-wink"></i></p>
+        <div>
+          <button mat-raised-button color="primary" (click)="newCustomer()">Salva Cliente</button>
+        </div>
+        <div *ngIf="save" class="bg-success rounded text-white mt-2 p-2 text-center">
+          <h2 class="m-auto">Cliente registrato con successo</h2>
+        </div>
+      </mat-step>
+    </mat-stepper>
+
+  </div>
+
+</app-sidebar>
+

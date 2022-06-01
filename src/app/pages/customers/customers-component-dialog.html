@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Modifica Cliente</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Ragione Sociale</mat-label>
+    <input type='text' matInput required [(ngModel)]="data.ragioneSociale">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type='email' matInput required [(ngModel)]="data.email">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Partita Iva</mat-label>
+    <input type='text' matInput required [(ngModel)]="data.partitaIva">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annulla</button>
+  <button mat-button [mat-dialog-close]="getChanges(data.ragioneSociale, data.email, data.partitaIva)"  cdkFocusInitial>Ok</button>
+</div>
+
+
